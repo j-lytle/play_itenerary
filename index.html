@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,9 +31,10 @@
   .info-card-link:hover { text-decoration: underline; }
 
   .day-block { margin-bottom: 1.1rem; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
-  .day-header { background: #1a1a1a; color: #fff; padding: 9px 15px; display: flex; align-items: baseline; gap: 10px; }
+  .day-header { background: #1a1a1a; color: #fff; padding: 9px 15px; display: flex; align-items: center; gap: 10px; }
   .day-name { font-size: 13px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.06em; }
   .day-date { font-size: 11px; color: #777; }
+  .day-weather { margin-left: auto; font-size: 11px; color: #999; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
 
   .events { border: 1px solid #e5e5e5; border-top: none; border-radius: 0 0 10px 10px; overflow: hidden; background: #fff; }
   .event { display: flex; border-bottom: 1px solid #f0f0f0; background: #fff; transition: opacity 0.2s; }
@@ -113,12 +113,13 @@
     <div class="day-header">
       <span class="day-name">Thursday</span>
       <span class="day-date">April 16, 2026</span>
+      <span class="day-weather">☀️ 88°F · 10% rain</span>
     </div>
     <div class="events" id="events-thu">
       <div class="event" data-tags="general">
         <div class="event-time">Evening</div>
         <div class="event-body">
-          <div class="event-title">🏠 Arrivals — Parents &amp; Great-Grandparents</div>
+          <div class="event-title">🏠 Arrivals — Parents, Grandparents &amp; Great-Grandparents</div>
           <div class="event-detail">Family members arrive and check in</div>
         </div>
       </div>
@@ -137,6 +138,7 @@
     <div class="day-header">
       <span class="day-name">Friday</span>
       <span class="day-date">April 17, 2026</span>
+      <span class="day-weather">🌤️ 76°F · 10% rain</span>
     </div>
     <div class="events" id="events-fri">
       <div class="event dimmed-row" data-tags="play">
@@ -161,6 +163,7 @@
     <div class="day-header">
       <span class="day-name">Saturday</span>
       <span class="day-date">April 18, 2026</span>
+      <span class="day-weather">⛅ 66°F · 25% rain</span>
     </div>
     <div class="events" id="events-sat">
       <div class="event" data-tags="baseball">
@@ -201,6 +204,7 @@
     <div class="day-header">
       <span class="day-name">Sunday</span>
       <span class="day-date">April 19, 2026</span>
+      <span class="day-weather">🌧️ 55°F · 65% rain</span>
     </div>
     <div class="events">
       <div class="tbd-row">Details to be added…</div>
