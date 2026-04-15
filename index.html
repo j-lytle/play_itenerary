@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekend Itinerary — April 16–19, 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: #f4f4f2; color: #1a1a1a; min-height: 100vh; padding: 2rem 1rem 3rem; }
+
+  .wrap { max-width: 680px; margin: 0 auto; }
+
+  .hero { background: #1a1a1a; border-radius: 14px; padding: 1.75rem 2rem 1.5rem; margin-bottom: 1.25rem; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; border-radius: 50%; background: rgba(192,57,43,0.18); pointer-events: none; }
+  .hero-title { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+  .hero-sub { font-size: 13px; color: #999; margin-top: 4px; }
+  .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .pill { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 20px; cursor: pointer; transition: all 0.15s; user-select: none; border: 1.5px solid transparent; }
+  .pill-play { background: #c0392b; color: #fff; border-color: #c0392b; }
+  .pill-baseball { background: #1a6e2e; color: #fff; border-color: #1a6e2e; }
+  .pill-all { background: rgba(255,255,255,0.13); color: #ddd; border-color: rgba(255,255,255,0.22); }
+  .pill.inactive { background: transparent !important; color: #777; border-color: #444; }
+  .pill-all.inactive { color: #555; border-color: #333; }
+
+  .info-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.25rem; }
+  .info-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 13px 15px; border-left: 3px solid #1a1a1a; }
+  .info-card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: #888; margin-bottom: 5px; }
+  .info-card-name { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .info-card-addr { font-size: 11px; color: #888; margin-top: 2px; line-height: 1.4; }
+  .info-card-link { font-size: 11px; color: #c0392b; text-decoration: none; margin-top: 5px; display: inline-block; font-weight: 500; }
+  .info-card-link:hover { text-decoration: underline; }
+
+  .day-block { margin-bottom: 1.1rem; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .day-header { background: #1a1a1a; color: #fff; padding: 9px 15px; display: flex; align-items: baseline; gap: 10px; }
+  .day-name { font-size: 13px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.06em; }
+  .day-date { font-size: 11px; color: #777; }
+
+  .events { border: 1px solid #e5e5e5; border-top: none; border-radius: 0 0 10px 10px; overflow: hidden; background: #fff; }
+  .event { display: flex; border-bottom: 1px solid #f0f0f0; background: #fff; transition: opacity 0.2s; }
+  .event:last-child { border-bottom: none; }
+  .event.shaded { background: #fafafa; }
+  .event.dimmed-row { background: #fafafa; }
+  .event.hidden { display: none; }
+
+  .event-time { width: 108px; min-width: 108px; padding: 11px 12px 11px 14px; font-size: 11px; font-weight: 700; color: #c0392b; border-right: 1px solid #f0f0f0; display: flex; align-items: flex-start; padding-top: 13px; line-height: 1.3; }
+  .event.dimmed-row .event-time { color: #bbb; font-weight: 500; }
+
+  .event-body { flex: 1; padding: 11px 15px; }
+  .event-emoji { font-size: 15px; margin-right: 5px; }
+  .event-title { font-size: 13px; font-weight: 600; color: #1a1a1a; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; line-height: 1.4; }
+  .event.dimmed-row .event-title { font-style: italic; font-weight: 400; color: #aaa; font-size: 12px; }
+  .event-detail { font-size: 11px; color: #888; margin-top: 3px; line-height: 1.4; }
+  .event-link { font-size: 11px; color: #c0392b; text-decoration: none; margin-top: 3px; display: inline-block; font-weight: 500; }
+  .event-link:hover { text-decoration: underline; }
+  .event-attendees { font-size: 11px; color: #888; margin-top: 4px; line-height: 1.5; }
+
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; letter-spacing: 0.03em; }
+  .tag-red { background: #fde8e8; color: #a32d2d; border: 1px solid #f09595; }
+  .tag-green { background: #e4f5e9; color: #1a5e2a; border: 1px solid #a3d9b0; }
+
+  .empty-state { text-align: center; padding: 16px; font-size: 12px; color: #aaa; font-style: italic; display: none; }
+
+  .tbd-row { padding: 14px 15px; font-size: 12px; color: #bbb; font-style: italic; background: #fff; }
+
+  .footer { text-align: center; font-size: 11px; color: #aaa; margin-top: 1.5rem; padding-top: 14px; border-top: 1px solid #e5e5e5; line-height: 1.8; }
+  .footer-accent { color: #c0392b; font-weight: 600; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .hero::after { display: none; }
+    .pill { cursor: default; }
+    .event.hidden { display: flex !important; }
+  }
+  @media (max-width: 480px) {
+    .info-bar { grid-template-columns: 1fr; }
+    .event-time { width: 86px; min-width: 86px; }
+    body { padding: 1rem 0.75rem 2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-title">Weekend Itinerary</div>
+    <div class="hero-sub">April 16–19, 2026 &nbsp;·&nbsp; North Caldwell, NJ</div>
+    <div class="hero-pills">
+      <span class="pill pill-all" data-filter="all" onclick="setFilter('all')">All events</span>
+      <span class="pill pill-play inactive" data-filter="play" onclick="setFilter('play')">🎭 High School Musical Jr.</span>
+      <span class="pill pill-baseball inactive" data-filter="baseball" onclick="setFilter('baseball')">⚾ Opening Day Baseball</span>
+    </div>
+  </div>
+
+  <div class="info-bar">
+    <div class="info-card">
+      <div class="info-card-label">🏨 Lodging</div>
+      <div class="info-card-name">Home2 Suites by Hilton</div>
+      <a href="https://maps.app.goo.gl/jiA4MCA9UPNcQtEK8" class="info-card-link">View on Google Maps ↗</a>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">🎭 Play Venue</div>
+      <div class="info-card-name">West Essex School</div>
+      <div class="info-card-addr">65 Greenbrook Rd, North Caldwell, NJ</div>
+      <a href="https://maps.google.com/?q=65+Greenbrook+Rd,+North+Caldwell,+NJ" class="info-card-link">View on Google Maps ↗</a>
+    </div>
+  </div>
+
+  <!-- THURSDAY -->
+  <div class="day-block" id="day-thu">
+    <div class="day-header">
+      <span class="day-name">Thursday</span>
+      <span class="day-date">April 16, 2026</span>
+    </div>
+    <div class="events" id="events-thu">
+      <div class="event" data-tags="general">
+        <div class="event-time">Evening</div>
+        <div class="event-body">
+          <div class="event-title">🏠 Arrivals — Parents &amp; Great-Grandparents</div>
+          <div class="event-detail">Family members arrive and check in</div>
+        </div>
+      </div>
+      <div class="event shaded dimmed-row" data-tags="play">
+        <div class="event-time">5:00 – 9:00 PM</div>
+        <div class="event-body">
+          <div class="event-title">Cole unavailable — play practice</div>
+        </div>
+      </div>
+      <div class="empty-state" id="empty-thu">No events match this filter</div>
+    </div>
+  </div>
+
+  <!-- FRIDAY -->
+  <div class="day-block" id="day-fri">
+    <div class="day-header">
+      <span class="day-name">Friday</span>
+      <span class="day-date">April 17, 2026</span>
+    </div>
+    <div class="events" id="events-fri">
+      <div class="event dimmed-row" data-tags="play">
+        <div class="event-time">5:10 PM</div>
+        <div class="event-body">
+          <div class="event-title">Cole has call time of 5:30 PM</div>
+        </div>
+      </div>
+      <div class="event shaded" data-tags="play">
+        <div class="event-time">7:00 PM</div>
+        <div class="event-body">
+          <div class="event-title"><span class="event-emoji">🎭</span> High School Musical Jr. <span class="tag tag-red">Opening Night</span></div>
+          <div class="event-attendees">👥 Mike, Renada, Linda, Sheila (neighbor), Nicole</div>
+        </div>
+      </div>
+      <div class="empty-state" id="empty-fri">No events match this filter</div>
+    </div>
+  </div>
+
+  <!-- SATURDAY -->
+  <div class="day-block" id="day-sat">
+    <div class="day-header">
+      <span class="day-name">Saturday</span>
+      <span class="day-date">April 18, 2026</span>
+    </div>
+    <div class="events" id="events-sat">
+      <div class="event" data-tags="baseball">
+        <div class="event-time">11:00 AM</div>
+        <div class="event-body">
+          <div class="event-title"><span class="event-emoji">⚾</span> Opening Day Ceremony <span class="tag tag-green">Baseball</span></div>
+          <div class="event-detail">19 Harrison Ave, Roseland, NJ 07068</div>
+          <a href="https://maps.google.com/?q=19+Harrison+Ave,+Roseland,+NJ+07068" class="event-link">Google Maps ↗</a>
+        </div>
+      </div>
+      <div class="event shaded" data-tags="baseball">
+        <div class="event-time">1:00 – 3:00 PM</div>
+        <div class="event-body">
+          <div class="event-title"><span class="event-emoji">⚾</span> Opening Day Game: Mets @ Dodgers</div>
+          <div class="event-detail">19 Harrison Ave, Roseland, NJ 07068</div>
+        </div>
+      </div>
+      <div class="event dimmed-row" data-tags="play">
+        <div class="event-time">5:10 PM</div>
+        <div class="event-body">
+          <div class="event-title">Cole has call time of 5:30 PM</div>
+        </div>
+      </div>
+      <div class="event shaded" data-tags="play">
+        <div class="event-time">7:00 PM</div>
+        <div class="event-body">
+          <div class="event-title"><span class="event-emoji">🎭</span> High School Musical Jr. <span class="tag tag-red">Evening Show</span></div>
+          <div class="event-attendees">👥 Kalin, Tom, Q, Maria, Jordan</div>
+        </div>
+      </div>
+      <div class="empty-state" id="empty-sat">No events match this filter</div>
+    </div>
+  </div>
+
+  <!-- SUNDAY -->
+  <div class="day-block" id="day-sun">
+    <div class="day-header">
+      <span class="day-name">Sunday</span>
+      <span class="day-date">April 19, 2026</span>
+    </div>
+    <div class="events">
+      <div class="tbd-row">Details to be added…</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-accent">High School Musical Jr.</span> &nbsp;·&nbsp; April 16–19, 2026<br>
+    West Essex School &nbsp;·&nbsp; 65 Greenbrook Rd, North Caldwell, NJ
+  </div>
+
+</div>
+
+<script>
+  let current = 'all';
+
+  function setFilter(f) {
+    current = f;
+    document.querySelectorAll('.pill').forEach(p => {
+      p.classList.toggle('inactive', p.dataset.filter !== f);
+    });
+
+    const days = ['thu','fri','sat','sun'];
+    days.forEach(d => {
+      const container = document.getElementById('events-' + d);
+      if (!container) return;
+      const rows = container.querySelectorAll('.event[data-tags]');
+      let visible = 0;
+      rows.forEach(row => {
+        const tags = row.dataset.tags.split(' ');
+        const show = f === 'all' || tags.includes(f) || tags.includes('general');
+        row.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      const empty = document.getElementById('empty-' + d);
+      if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+      const dayBlock = document.getElementById('day-' + d);
+      if (dayBlock) dayBlock.style.display = (f !== 'all' && visible === 0 && d === 'sun') ? 'none' : '';
+    });
+  }
+</script>
+</body>
+</html>
